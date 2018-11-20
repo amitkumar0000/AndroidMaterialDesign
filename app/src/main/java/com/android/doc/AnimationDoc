@@ -1,0 +1,207 @@
+
+Animation:-
+==========
+
+Animation -- Animator - TransitionManager -- ACtivityOption
+
+Animating Layout Transition on User action.
+
+Android include Transition Framework which enable animate changes between two view hieracrchies.
+
+This Framework animate the views at runtime by changing some of their property values over time.
+
+Animation API
+==============
+    1 Drawable Animation :-
+       -----------------
+            When we want to animate bitmap graphics such as icons , use Drawable Animation
+            Android provide couple of option to animate drawable:-
+                1. Animation Drawable
+                    This allow to create list of static drawable files, that will be display one at a time to create a animation.
+
+                2. Animated Vector Drawable
+                    This let to animate properties of vector drawable.
+
+
+    2. Property Animation (API level 11 or above):-
+       ---------------------------------------------
+            Animate UI visibility and motion. To move, reveal or hide view from current layout.
+            These animation update properties of View over time period contiously redrawing the view as properties changes.
+            e.g for fade in and out... change alpha properties
+                for movement  .. change position properties
+
+
+            Property Animation is robust framework that can animate anything. we can define an animation to change any object
+            property over lenght of time, whether it is draws to screen or not.
+
+            With Property Animation, following characteristics can be defined:-
+            1. Duration :- Duration of animation.
+            2. Time interpolation :- can specify the values of property are calculated as a function of animation current elapsed time.
+            3. Repeat count and behaviour :- can specify how many time animation can repeat. also specify back animation.
+            4. Animation Set :- can group animation into logical set.
+            5. Frame refresh rate :- can specify how often to refresh frame of your animation.
+
+
+            ValueAnimator : IT keep track of how long animation is running and current value of the property that is animating
+                    ValueAnimator object encapsulate TimeInterpolator(Which define animation interpolation)
+                     and TypeEvaluator(which define how to calculate value of the properties being animated)
+
+                     To animate , give start pos , end pos and duration of animation.
+                     Value animator calculate elapsed fraction then time interpolation and then type evaluator.
+
+
+            View animation can only animate view object.View animation is visual changes, Property Animation changes the properties of
+            view object.
+            disadvantage of the view animation system is that
+            it only modified where the View was drawn, and not the actual View itself.
+            For instance, if you animated a button to move across the screen,
+            the button draws correctly, but the actual location where you can click the button does not change,
+            so you have to implement your own logic to handle this
+
+            Animator Class
+                -- ValueAnimator
+                -- ObjectAnimator
+                --  AnimatorSet
+
+    3. View Animation / Tween Animation
+      ---------------------------------
+      Move, Rotate, Shrink/grow, Fade
+      view animation system to perform tweened(intermediate frame) animation on Views.
+      View animation can perform
+                position<translate>,
+                rotation<rotatae>,
+                size<scale>,
+                 transparency<alpha>
+      on content of view.
+
+      AnimationUtil class helps to load :-
+       ImageView image = (ImageView)findViewById(R.id.imageView);
+       Animation animation1 =  AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide);
+       image.startAnimation(animation1);
+
+    4. Animate Layout Changes :-
+       -------------------------
+        From API level 19, Transition manager can be used to create animation when we swap the layout within current activity
+        or fragment. Specify starting and ending layout , type of animation to execute.
+
+        The starting and ending layout are each stored in a Scene, though
+        the starting scene is usually determined automatically from the current layout.
+
+        You then create a Transition to tell the system what type of animation you want,
+
+       <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+           android:id="@+id/scene_container"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent" >
+           <TextView
+               android:id="@+id/text_view1
+               android:text="Text Line 1" />
+           <TextView
+               android:id="@+id/text_view2
+               android:text="Text Line 2" />
+       </RelativeLayout>
+
+       and then call TransitionManager.go() and the system runs the animation to swap the layouts
+
+    5. Animate between Activities
+       ------------------------------
+        From API level 21 , Transition framework can create animation between layout of seperate activities.
+         For example, when the user taps an item to see more information,
+         you can transition into a new activity with an animation that seamlessly grows that item to fill the screen
+          call startActivity(),
+          but pass it a bundle of options provided by ActivityOptions.makeSceneTransitionAnimation().
+          This bundle of options may include which views are shared between the activities
+          so the transition framework can connect them during the animation
+
+
+
+
+
+ TransitionManager  available from Android 5.0
+ ==================
+ This class manages the set of transitions that fire when there is a change of Scene.
+
+public static void beginDelayedTransition (ViewGroup sceneRoot)
+Convenience method to animate, using the default transition,
+to a new scene defined by all changes within the given scene root between calling this method and the next rendering frame
+
+we can specify exact type of transition via 2nd parameter of beginDelayedTransition (ViewGroup sceneRoot, Transition transition)
+
+Simple type of transition:-
+1. Change Bound :- size and position
+2. Fade :- fade in/out
+3. TransitionSet :- Set of transition
+4. AutoTransition : Fade out, Change Bound and Fade in
+
+    Slide, Explode and propagation, ChangeImageTransform, Path(curved) motion
+
+
+android:animateLayoutChanges
+===========================
+(ViewGroup) findViewById(R.id.llRoot)).getLayoutTransition()
+          .enableTransitionType(LayoutTransition.CHANGING);
+
+
+Acitivity Transition
+===================
+1. Slide Transition
+2. Fade Transition
+3. Explode Transition
+
+    Shared Element Transition is supported above API level 21 (Android 5.0)
+    =======================================================================
+    Steps:-
+        1. Enable Window Content Transition in styles.xml
+                <item name="android:windowContentTransitions">true</item>
+        2. Assign a common Transition name to the shared element in both layouts.
+                      android:transitionName="profile"
+
+        start the activity
+        ---------------------
+            Intent intent = new Intent(this, DetailsActivity.class);
+            // Pass data object in the bundle and populate details activity.
+            intent.putExtra(DetailsActivity.EXTRA_CONTACT, contact);
+            ActivityOptionsCompat options = ActivityOptionsCompat.
+                makeSceneTransitionAnimation(this, (View)ivProfile, "profile");
+            startActivity(intent, options.toBundle());
+
+        To reverse the scene transition animation when you finish the second activity,
+        call the Activity.supportFinishAfterTransition() method instead of Activity.finish().
+        Also, you will need to override the behavior of the home button in the ToolBar/ ActionBar for such cases
+
+    Multiple Shared Elements
+    =========================
+    Intent intent = new Intent(context, DetailsActivity.class);
+    intent.putExtra(DetailsActivity.EXTRA_CONTACT, contact);
+    Pair<View, String> p1 = Pair.create((View)ivProfile, "profile");
+    Pair<View, String> p2 = Pair.create(vPalette, "palette");
+    Pair<View, String> p3 = Pair.create((View)tvName, "text");
+    ActivityOptionsCompat options = ActivityOptionsCompat.
+        makeSceneTransitionAnimation(this, p1, p2, p3);
+    startActivity(intent, options.toBundle());
+
+    Customizing Shared Elements Transition
+    ======================================
+    In Android L, shared elements transition defaults to a combination of ChangeBounds, ChangeTransform, ChangeImageTransform,
+    and ChangeClipBounds. This works well for most typical cases.
+     However, you may customize this behavior or even define your own custom transition.
+
+     Specify in styles.xml
+
+         <item name="android:windowEnterTransition">@transition/change_image_transform</item>
+         <item name="android:windowExitTransition">@transition/change_image_transform</item>
+
+
+     To enable window content transitions at runtime instead, call the Window.requestFeature() method:
+
+     // inside your activity (if you did not enable transitions in your theme)
+     getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+     // set an enter transition
+     getWindow().setEnterTransition(new Explode());
+     // set an exit transition
+     getWindow().setExitTransition(new Explode());
+
+
+Animation on starting activity
+    Calling overridePendingTransition after the call to startActivity will ensure that the
+    newly started Activity runs the enterAnimationId and the current Activity runs the exitAnimationId.

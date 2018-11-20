@@ -1,0 +1,64 @@
+Custom View
+===========
+Why to create CustomView
+1. There is no system provided view that fullfil requirement.
+2. Performance :- If we have lots of view in a layout and want to optimize it by drawing a single custom view to make it lighter.
+3. A big view hierarcy that is complex to operate and support.
+4. A complete custom view that required manual drawing.
+
+How to animate custom view ??
+
+View LifeCycle
+============
+        Custructor
+        parent call addView
+          onAttachToWindow
+          measure
+          onMeasure
+          layout
+          onLayout
+          dispatchDraw
+          draw
+          onDraw
+
+
+          if invalidate  then it view call--- > onDraw()
+          if requestLayout  then view call from  onMeasure()-->onLayout()-->onDraw()
+
+
+        Custructor() :- Every View starts its life from constructor. Here all initial drawing, various calculation and setting default
+                       value is done.
+
+                       We can use AttributeSet interface to setup view with some static parameter.
+                       we create attr.xml file  and set attr name and value
+
+        onAttachToWindow() :- After Parent view called addView() that view will be attached to a window.
+                            At this stage our view will know other view that is surrounded by.
+                            If our view is working with other view defined in same layout, it is best place to find them by id.
+
+        OnMeasure() :- Means our Custom View is on stage and need to find out its own size. Its very important method as for most case
+                        our view need to have specific size to fit into layout.
+
+
+        onLayout() :- Incorporate assigning size and position of each of its children.
+
+        onDraw() :- It will draw view in the window.
+                    Having both Paint and Canvs Object will allow to draw anything.
+
+                    Canvas Object comes as onDraw Parameter. It will draw the shape of view.
+                    Paint object will give color to view.
+
+                    OnDraw() method get called lots of times. So avoid creating object allocation in it.Create once and reuse further on.
+
+
+        View Update
+        ==========
+        invalidate :- View will redraw itself. onDraw() method will get called.
+        requestLayout :- View will call onMeasure() as new size need to calculate. What follow after that will onLayout() and onDraw()
+                        method call.
+
+
+        Animation:-
+                Animation in custom view is frame by frame process.
+                Call invalidate() method after every
+

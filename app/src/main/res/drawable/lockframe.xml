@@ -1,0 +1,6 @@
+<animation-list android:oneshot="false" xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_lock_open_black_24dp"
+          android:duration="400"/>
+    <item android:drawable="@drawable/ic_lock_outline_black_24dp"
+          android:duration="400"/>
+</animation-list>

@@ -1,0 +1,9 @@
+1. ViewPager
+2. ViewFlipper
+    In Android, ViewFlipper is a subclass of ViewAnimator which is used for switching between views.
+    It is an element of transition widget which helps us to add transition on the views (i.e. changing from one view to another).
+    It is mainly useful to animate a view on screen.
+3. ViewSwitcher
+    ViewFlipper and ViewSwitcher both are sub classes of ViewAnimator and does the same task.
+    The main difference between the two is ViewSwitcher can hold only two child views
+    but ViewFlipper can holds two or more child views and show one at a time

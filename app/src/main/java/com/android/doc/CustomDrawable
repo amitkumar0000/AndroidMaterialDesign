@@ -1,0 +1,70 @@
+Shape, Selector, Layer-list
+==============================
+link:- https://www.dev2qa.com/android-shape-selector-examples/
+
+Shape, selector and layer-list are usually used to create custom drawable resources in android development
+
+All the three xml element should be defined in a xml file under app / res / drawable folder.
+ The file name is just the drawable resource id.
+ e.g app/res/drawable/my_shapes.xml
+ from java code:- R.drawable.my_shapes
+       xml :- @drawable/my_shapes
+
+
+Shape
+======
+Shape is used to define custom shape in drawable resource.
+It is used in both selector and layer-list.
+It has below properties:-
+    Android:Shape : value can be "line" "rectangle" "oval"  or "ring"
+
+  Shape sub elements
+  ==================
+  1. <gradient>
+        Define  color gradual change style
+        android:startcolor
+        android:endcolor
+        android:angle
+        android:type : liner , radial , sweep
+
+  2. <solid>
+        android:color : The color value that is used to fill shape.
+
+  3. <stroke>
+        Define border bolder style
+        android:width :- border width
+        android:color :- border color
+        android:dashWidth :- Dash Border width
+        android:dashGap :- Gap between two dash of the border
+
+  4. <corners>
+        Define shape corner style
+        android:radius, android:topLeftRadius,
+        android:topRightRadius,
+        android:bottomLeftRadius,
+        android:bottomRightRadius
+
+  5. <padding>
+        Define the padding value
+        android:top, android:bottom, android:left, android:right
+
+  6. <size>
+        Define shape size in width and height
+
+Selector
+===========
+
+Selectors is used to define view components background color or background image by its various state.
+    View Components state
+            1. android:state_pressed : boolean value button is pressed true/false
+            2. android:state_enabled : boolean value button is enabled/disabled
+            3. android:state_focused : boolean value true mean button has focus false button lost focus.
+            4. andorid:state_window_focused : this is button default state. It is same as do not specify button state.
+
+    Selector file is placed under app/res/drawable/my_selector.xml
+    We can define several item in selector definition xml files. Each item include a drawable object.
+    Android will check each item in selector by its list order. if any one match , state is shown otherwise default one is shown.
+
+Layer-list
+============
+    Layer-list create Item on top of another item as list in order way.
