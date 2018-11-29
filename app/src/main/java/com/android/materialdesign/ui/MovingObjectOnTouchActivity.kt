@@ -24,6 +24,7 @@ class MovingObjectOnTouchActivity : AppCompatActivity() {
         image = findViewById(R.id.lockObject)
         mainLayout = findViewById(R.id.main)
 
+
         image.setOnTouchListener(object:  View.OnTouchListener{
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 var x:Int = event?.rawX!!.roundToInt()

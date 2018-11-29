@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.android.materialdesign">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -51,7 +53,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
-                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+                <!-- <category android:name="android.intent.category.LAUNCHER"/> -->
             </intent-filter>
         </activity>
         <activity android:name=".ui.MovingObjectOnTouchActivity">
@@ -72,10 +74,31 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
-                 <category android:name="android.intent.category.LAUNCHER"/>
+                <!-- <category android:name="android.intent.category.LAUNCHER"/> -->
             </intent-filter>
         </activity>
         <activity android:name=".ui.ImageTransitionActivity">
+        </activity>
+        <activity android:name=".ui.TextFormatActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <!-- <category android:name="android.intent.category.LAUNCHER"/> -->
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.TextViewActivtiy">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.BottomSheetActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 

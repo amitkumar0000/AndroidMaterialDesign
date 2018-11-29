@@ -31,17 +31,17 @@ class ActivityTransitionActivity : AppCompatActivity() {
     fun onClick(view: View){
         when(view.id){
             R.id.catImage -> {
-               /* val intent = Intent(this, ImageTransitionActivity::class.java)
+                val intent = Intent(this, ImageTransitionActivity::class.java)
 
                 val p1:Pair<View,String> = Pair.create(imageview as View, "profile")
 //                val p2:Pair<View,String> = Pair.create(catText as View, "profile")
 
                 val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this,p1)
-                startActivity(intent, options.toBundle())*/
+                startActivity(intent, options.toBundle())
 
-                val intent = Intent(this, ImageTransitionActivity::class.java)
+           /*     val intent = Intent(this, ImageTransitionActivity::class.java)
                 startActivity(intent)
-                overridePendingTransition(enterAnimationId!!, exitAnimationId!!)
+                overridePendingTransition(enterAnimationId!!, exitAnimationId!!)*/
             }
         }
     }

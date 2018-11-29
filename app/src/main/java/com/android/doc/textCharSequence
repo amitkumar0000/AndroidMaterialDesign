@@ -1,0 +1,7 @@
+Working with spans in Android
+==============================
+Spans and Spannables are the great feature in Android SDK.
+They help programmers to create a complex CharSequences
+with different text sizes, colors, typefaces and also attach links to text.
+Even text with image in it is possible with Spannable.
+

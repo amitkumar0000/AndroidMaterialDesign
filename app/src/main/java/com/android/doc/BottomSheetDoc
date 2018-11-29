@@ -1,0 +1,31 @@
+BottomSheet
+----------
+Android Bottom Sheet component slides up from the bottom showing more relevant content.
+
+Types of BottomSheet:-
+-----------------------
+1. Persistent Bottom Sheet
+            The Persistent bottom sheet displays in-app content.
+            It will be displayed at the bottom of the screen making some portion of the content visible.
+             When activated it opens the full content.
+             The elevation of the persistent bottom sheet is same as app making it part of the app.
+
+2. Modal Bottom Sheet
+        Modal bottom sheets have higher elevation than the app.
+        These usually replaces menus or dialogs.
+        Generally modal bottom sheets used to show deep-linked content from other apps.
+
+Important Attribute to be noted in layout file
+----------------------------------------------
+app:layout_behavior: This attribute makes the layout act as bottom sheet.
+                     The value should be android.support.design.widget.BottomSheetBehavior
+app:behavior_peekHeight: This is the height of the bottom sheet when it is minimized
+app:behavior_hideable: Makes bottom sheet hidden when swiped it down.
+
+BottomSheetBehavior provides callbacks and make the BottomSheet work with CoordinatorLayout.
+BottomSheetBehavior.BottomSheetCallback() provides callback when the Bottom Sheet changes its state.
+
+By setting bottomSheet State, it can be expand or collapsed.
+
+Modal Bottom Sheet – BottomSheetDialog and BottomSheetDialogFragment
+---------------------------------------------------------------------

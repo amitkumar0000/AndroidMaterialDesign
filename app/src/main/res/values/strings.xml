@@ -1,4 +1,24 @@
 <resources>
     <string name="app_name">AndroidMaterialDesign</string>
     <string name="title_activity_image_slider">ImageSliderActivity</string>
+    <string name="textdesc">RedMart Multi Purpose Kitchen Towels are high-quality, responsibly sourced kitchen towels.
+        They are strong and absorbent - ideal for cleaning, drying and removing grease. This paper is FSC certified to
+        ensure a responsible and sustainable management of the worlds forests . This paper contains no optical
+        brightening agents , that can cause skin irritation.
+    </string>
+    <string name="expandableText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut volutpat interdum
+        interdum. Nulla laoreet lacus diam, vitae sodales sapien commodo faucibus. Vestibulum et feugiat enim.
+        Donec semper mi et euismod tempor. Sed sodales eleifend mi id varius. Nam et ornare enim, sit amet
+        gravida sapien. Quisque gravida et enim vel volutpat. Vivamus egestas ut felis a blandit. Vivamus
+        fringilla dignissim mollis. Maecenas imperdiet interdum hendrerit. Aliquam dictum hendrerit
+        ultrices. Ut vitae vestibulum dolor. Donec auctor ante eget libero molestie porta. Nam tempor fringilla
+        ultricies. Nam sem lectus, feugiat eget ullamcorper vitae, ornare et sem. Fusce dapibus ipsum sed
+        laoreet suscipit.
+    </string>
+    <string name="terms_of_service">Terms of Services</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="terms">Terms</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
